@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        kubernetes {
-            podRetention always()
-            yaml """
+        kubernetes podRetention: always(), yaml: """
                 kind: Pod
                 metadata:
                   name: jenkins-agent
@@ -16,7 +14,6 @@ pipeline {
                     tty: true
                   restartPolicy: Never
                 """
-        }
     }
     stages {
         stage('Build maven project') {
