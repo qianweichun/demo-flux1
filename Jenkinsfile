@@ -7,10 +7,11 @@ pipeline {
     stages {
         stage('Build maven project') {
             steps {
-                container("maven") {
-                    sh 'mvn -Dmaven.test.skip=true package'
-                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
-                }
+                kubernetes.image().withName("demo-flux1").build().fromPath(".")
+//                container("maven") {
+//                    sh 'mvn -Dmaven.test.skip=true package'
+//                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+//                }
             }
         }
     }
