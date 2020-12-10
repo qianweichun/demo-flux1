@@ -1,13 +1,12 @@
 pipeline {
     agent {
-        kubernetes {
-            containerTemplates [containerTemplate {
+        kubernetes containerTemplates: [containerTemplate {
                 name 'maven'
                 image 'maven:3.6.3-openjdk-8-slim'
                 command 'cat'
                 ttyEnabled true
             }]
-        }
+
     }
     stages {
         stage('Build maven project') {
