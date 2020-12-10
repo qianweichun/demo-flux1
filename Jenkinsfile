@@ -8,8 +8,9 @@ pipeline {
         stage('Build maven project') {
             steps {
                 container("maven") {
-                    sh 'mvn -Dmaven.test.skip=true package'
-                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                    withMaven {
+                        sh 'mvn -Dmaven.test.skip=true package'
+                    }
                 }
             }
         }
