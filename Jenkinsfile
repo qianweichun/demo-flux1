@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            containerTemplates ["", ""]
+            containerTemplates getContainerTemplates()
         }
 //        kubernetes containerTemplates: [containerTemplate(name: 'maven', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true),
 //                                        containerTemplate(name: 'maven2', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true)]
@@ -19,7 +19,10 @@ pipeline {
         }
     }
 }
-
+def getContainerTemplates() {
+    [containerTemplate(name: 'maven', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true),
+                                        containerTemplate(name: 'maven2', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true)]
+}
 //podTemplate(imagePullSecrets:["default"], containers: [containerTemplate(name: 'maven', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true),
 //                                                               containerTemplate(name: 'maven2', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true)]) {
 //    node(POD_LABEL) {
