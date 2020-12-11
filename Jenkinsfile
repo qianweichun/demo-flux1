@@ -1,7 +1,7 @@
 pipeline {
     agent {
-        kubernetes shell: "bash",containerTemplates: [containerTemplate(name: 'maven', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true),
-                                        containerTemplate(name: 'maven2', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', ttyEnabled: true)]
+        kubernetes containerTemplates: [containerTemplate(name: 'maven', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', shell: "bash", ttyEnabled: true),
+                                        containerTemplate(name: 'maven2', image: 'maven:3.6.3-openjdk-8-slim', command: 'cat', shell: "bash", ttyEnabled: true)]
     }
 
     stages {
