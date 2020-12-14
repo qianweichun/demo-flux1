@@ -2,9 +2,7 @@ pipeline {
     agent {
         kubernetes {
             yaml """
-apiVersion: v1
-kind: Pod
-spec
+spec:
   containers:
   - name: maven
     image: maven:3.6.3-openjdk-8-slim
